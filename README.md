@@ -1,7 +1,7 @@
 # nutanix-terraform
 
 Terraform/OpenTofu modules that I've created to support my Nutanix homelab running NKP
-[NKP (Nutanix Kubernetes Platform)](https://www.nutanix.com/products/kubernetes-platform).
+[NKP (Nutanix Kubernetes Platform)](https://www.nutanix.com/products/kubernetes-management-platform).
 
 ## Current modules
 
