@@ -1,33 +1,27 @@
 locals {
   
   nkp_operations = [
-    "Create_Virtual_Machine",
-    "Delete_Virtual_Machine",
-    "View_Virtual_Machine",
-    "View_Virtual_Machine_Disk",
-    "Create_Or_Update_Name_Category",
-    "Create_Or_Update_Value_Category",
-    "Delete_Name_Category",
+    "Create_New_Virtual_Machine",
+    "Delete_Existing_Virtual_Machine",
+    "Power_On_Virtual_Machine",
+    "View_Existing_Virtual_Machine",
+    "Update_Virtual_Machine_Custom_Attributes",
+    "Create_Category",
+    "Delete_Category",
     "Delete_Value_Category",
-    "View_Name_Category",
-    "View_Value_Category",
+    "View_Category",
     "View_Cluster",
     "View_Cluster_Pgpu_Profiles",
     "View_Cluster_Vgpu_Profiles",
     "View_Host",
+    "Create_Image",
+    "Delete_Image",
     "View_Image",
-    "View_Prism_Central",
+    "View_Domain_Manager",
     "View_Project",
     "View_Subnet",
     "Detach_Volume_Group_From_AHV_VM",
-    "View_VPC",
-    "Create_New_Virtual_Machine",
-    "Power_On_Virtual_Machine",
-    "View_Existing_Virtual_Machine",
-    "View_Virtual_Machine_Disk",
-    "Delete_Existing_Virtual_Machine",
-    "Customise_Virtual_Machine_Guest",
-    "Update_Virtual_Machine_Custom_Attributes"
+    "View_VPC"
   ]
 
   csi_operations = [
@@ -37,6 +31,7 @@ locals {
     "View_Virtual_Machine",
     "View_Category",
     "Create_Category",
+    "View_Cluster",
     "View_Domain_Manager",
     "View_Host",
     "View_External_iSCSI_Client",
@@ -71,9 +66,7 @@ locals {
     "Clone_File_Server_Share",
     "View_Snapshot_File_server_Share", # note weird case
     "Create_File_Server_Share_Snapshot",
-    "Delete_Snapshot_File_server_Share", # note weird case
-    "Create_Virtual_Machine_Disk",
-    "Delete_Virtual_Machine_Disk"
+    "Delete_Snapshot_File_server_Share" # note weird case
   ]
 }
 

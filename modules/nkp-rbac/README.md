@@ -79,7 +79,7 @@ instead, set `var.password`; the random password is then not created.
 
 - The NKP and CSI operation lists are maintained as internal `locals` in
   [`operations.tf`](operations.tf); They are built up from the official
-  Nutanix documentation and feedback from the field:
+  Nutanix documentation:
   - NKP role: [Prism Central role permissions](https://portal.nutanix.com/page/documents/details?targetId=Nutanix-Kubernetes-Platform-v2_18:top-prism-central-role-permissions-r.html)
   - CSI Driver role: [CSI non-admin permissions list](https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver:csi-csi-non-admin-permissions-list-r.html)
 
