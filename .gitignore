@@ -20,9 +20,8 @@ override.tf.json
 *_override.tf
 *_override.tf.json
 
-# Lock files are committed for root configs; ignore in the module itself
-# (uncomment if you do not want to track them here)
-# .terraform.lock.hcl
+# Lock files
+.terraform.lock.hcl
 
 # CLI config
 .terraformrc

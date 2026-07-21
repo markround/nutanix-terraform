@@ -5,10 +5,14 @@ RBAC objects for [NKP (Nutanix Kubernetes Platform)](https://www.nutanix.com/pro
 
 It creates:
 
-- a local user account (default username `nkp`),
+- a Prism Central local user account (default username `nkp`; not a domain/LDAP/SAML account),
 - a NKP role and a CSI role, each built from the specific Prism Central
   operations NKP/Nutanix CSI requires,
 - authorization policies binding the user to those roles across all entities.
+
+Set `create_user = false` to skip the user account and its authorization
+policies and create only the two roles — useful when the identity that binds to
+the roles is managed elsewhere.
 
 ## Usage
 
@@ -54,26 +58,30 @@ instead, set `var.password`; the random password is then not created.
 
 | Name              | Description                                                                                                   | Type     | Default              |
 | ----------------- | ------------------------------------------------------------------------------------------------------------- | -------- | -------------------- |
-| `username`        | Username for the NKP user account.                                                                            | `string` | `"nkp"`              |
-| `user_description`| Description attached to the NKP user account.                                                                 | `string` | `"NKP User Account"` |
-| `email_id`        | Email address for the NKP user account.                                                                       | `string` | `"nkp@example.com"`  |
+| `create_user`     | Whether to create the Prism Central local user account and the authorization policies that bind to it. When `false`, only the roles are created. | `bool`   | `true`               |
+| `username`        | Username for the NKP local user account.                                                        | `string` | `"nkp"`              |
+| `user_description`| Description attached to the NKP local user account.                                             | `string` | `"NKP User Account"` |
+| `email_id`        | Email address for the NKP local user account.                                                   | `string` | `"nkp@example.com"`  |
 | `user_type`       | Type of the NKP user account (e.g. `LOCAL`, `SAML`, `LDAP`, `SERVICE_ACCOUNT`).                                | `string` | `"LOCAL"`            |
-| `first_name`      | First name for the NKP user account.                                                                          | `string` | `"NKP"`              |
-| `last_name`       | Last name for the NKP user account.                                                                           | `string` | `"Account"`          |
-| `password`        | Password for the NKP user. If `null`, a random password is generated and exposed via the `nkp_password` output. | `string` | `null`               |
+| `first_name`      | First name for the NKP local user account.                                                      | `string` | `"NKP"`              |
+| `last_name`       | Last name for the NKP local user account.                                                       | `string` | `"Account"`          |
+| `password`        | Password for the NKP local user account. If `null`, a random password is generated and exposed via the `nkp_password` output. | `string` | `null`               |
 | `password_length` | Length of the generated password. Only used when `password` is `null`. Must be `>= 8`.                        | `number` | `16`                 |
 
 ## Outputs
 
+Outputs tied to the user account and its policies are `null` when
+`create_user = false`.
+
 | Name                              | Description                                                        |
 | --------------------------------- | ------------------------------------------------------------------ |
-| `nkp_user_ext_id`                 | External ID (UUID) of the NKP user account.                        |
-| `nkp_username`                    | Username of the NKP user account.                                  |
-| `nkp_password`                    | Password for the NKP user account (generated or supplied). Sensitive. |
+| `nkp_user_ext_id`                 | External ID (UUID) of the NKP user account. `null` when `create_user = false`. |
+| `nkp_username`                    | Username of the NKP user account. `null` when `create_user = false`. |
+| `nkp_password`                    | Password for the NKP user account (generated or supplied). Sensitive. `null` when `create_user = false`. |
 | `nkp_role_ext_id`                 | External ID of the NKP role.                                       |
 | `csi_role_ext_id`                 | External ID of the CSI role.                                       |
-| `nkp_authorization_policy_ext_id` | External ID of the NKP authorization policy.                       |
-| `csi_authorization_policy_ext_id` | External ID of the CSI authorization policy.                       |
+| `nkp_authorization_policy_ext_id` | External ID of the NKP authorization policy. `null` when `create_user = false`. |
+| `csi_authorization_policy_ext_id` | External ID of the CSI authorization policy. `null` when `create_user = false`. |
 
 ## Notes
 

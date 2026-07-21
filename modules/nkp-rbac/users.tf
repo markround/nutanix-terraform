@@ -1,5 +1,5 @@
 resource "random_password" "nkp" {
-  count = var.password == null ? 1 : 0
+  count = var.create_user && var.password == null ? 1 : 0
 
   length           = var.password_length
   special          = true
@@ -7,10 +7,12 @@ resource "random_password" "nkp" {
 }
 
 locals {
-  nkp_password = var.password != null ? var.password : random_password.nkp[0].result
+  nkp_password = var.password != null ? var.password : (var.create_user ? random_password.nkp[0].result : null)
 }
 
 resource "nutanix_users_v2" "nkp_user" {
+  count = var.create_user ? 1 : 0
+
   username    = var.username
   description = var.user_description
   email_id    = var.email_id

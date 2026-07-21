@@ -1,17 +1,23 @@
+variable "create_user" {
+  description = "Whether to create the Prism Central local user account and the authorization policies that bind to it. When false, only the roles are created."
+  type        = bool
+  default     = true
+}
+
 variable "username" {
-  description = "Username for the NKP user account."
+  description = "Username for the NKP local user account."
   type        = string
   default     = "nkp"
 }
 
 variable "user_description" {
-  description = "Description attached to the NKP user account."
+  description = "Description attached to the NKP local user account."
   type        = string
   default     = "NKP User Account"
 }
 
 variable "email_id" {
-  description = "Email address for the NKP user account."
+  description = "Email address for the NKP local user account."
   type        = string
   default     = "nkp@example.com"
 }
@@ -23,19 +29,19 @@ variable "user_type" {
 }
 
 variable "first_name" {
-  description = "First name for the NKP user account."
+  description = "First name for the NKP local user account."
   type        = string
   default     = "NKP"
 }
 
 variable "last_name" {
-  description = "Last name for the NKP user account."
+  description = "Last name for the NKP local user account."
   type        = string
   default     = "Account"
 }
 
 variable "password" {
-  description = "Password for the NKP user account. If null (the default), a random password is generated and exposed via the nkp_password output."
+  description = "Password for the NKP local user account. If null (the default), a random password is generated and exposed via the nkp_password output."
   type        = string
   default     = null
   sensitive   = true

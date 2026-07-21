@@ -6,7 +6,7 @@ by calling the [`nkp-rbac`](../../modules/nkp-rbac) module.
 
 It creates:
 
-- a local **`nkp`** user account,
+- a Prism Central local **`nkp`** user account (not a domain/LDAP/SAML account),
 - an **NKP role** and a **CSI role** built from the required Prism Central operations,
 - **authorization policies** binding the user to those roles.
 
@@ -14,6 +14,11 @@ The example configures the `nutanix` provider (which the module deliberately doe
 not do itself) and passes the module its default values, so a plain apply gives
 you the standard NKP service account. Override any of the `module "nkp"` inputs
 in [`main.tf`](main.tf) to customise the user.
+
+To create only the two roles (skipping the `nkp` user and its authorization
+policies) set `create_user = false` on the `module "nkp"` block. This is useful
+when the identity that binds to the roles is managed elsewhere. In that mode the
+`nkp_password` output is `null`, so step 3 below does not apply.
 
 ## Usage
 
